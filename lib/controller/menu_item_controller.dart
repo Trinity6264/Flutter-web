@@ -7,8 +7,8 @@ class MenuItemController extends ChangeNotifier {
   // static final instance = MenuItemController._();
 
 // default active page
-  String activeItem = overViewPageRoute;
-  String horverItem = '';
+  var activeItem = overViewPageRoute;
+  var horverItem = '';
 
   void onChangeActiveItem(String name) {
     activeItem = name;
@@ -19,20 +19,15 @@ class MenuItemController extends ChangeNotifier {
     if (!isActive(name)) {
       horverItem = name;
       notifyListeners();
-      return;
     }
   }
 
   isActive(name) {
-    activeItem = name;
-    notifyListeners();
-    return activeItem;
+    return activeItem == name;
   }
 
   isHovering(name) {
-    activeItem = name;
-    notifyListeners();
-    return activeItem;
+    return activeItem == name;
   }
 
   Widget returnIcon(String name) {
@@ -46,7 +41,7 @@ class MenuItemController extends ChangeNotifier {
       case authenticationPageRoute:
         return _customIcon(Icons.exit_to_app, name);
       default:
-      return _customIcon(Icons.exit_to_app, name);
+        return _customIcon(Icons.exit_to_app, name);
     }
   }
 
